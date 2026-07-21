@@ -94,6 +94,7 @@ color:#cbd5e1;
 input[type="range"]{
 width:320px;
 cursor:pointer;
+accent-color: #ffffff;
 }
 button{
 width:260px;
@@ -140,14 +141,18 @@ color:#22c55e!important;
 <span class="pinDigit">_</span>
 <span class="pinDigit">_</span>
 </div>
+
 <div class="sliderArea">
-<label>
-Speed:
-<span id="speedValue">250</span> ms
-</label>
+<label>Speed</label>
 <br>
-<input id="speedSlider" type="range" min="75" max="750" step="25" value="250">
+<div style="display:flex;align-items:center;justify-content:center;gap:12px;width:320px;margin:8px auto 0;">
+    <span>Slower</span>
+    <input id="speedSlider" type="range" min="200" max="1000" step="50" value="600" style="flex:1; direction: rtl;">
+    <span>Faster</span>
 </div>
+</div>
+
+
 <button id="holdButton">HOLD</button>
 </div>
 <script>
@@ -156,7 +161,6 @@ const currentDigitDisplay=document.getElementById("currentDigit");
 const pinDigits=document.querySelectorAll(".pinDigit");
 const button=document.getElementById("holdButton");
 const speedSlider=document.getElementById("speedSlider");
-const speedValue=document.getElementById("speedValue");
 
 const cells=[];
 
@@ -171,7 +175,7 @@ cells.push(cell);
 let current=0;
 let timer=null;
 let pressed=false;
-let speed=250;
+let speed=600;
 
 let entered=[];
 let display=["_","_","_","_"];
@@ -253,7 +257,6 @@ updatePin();
 
 speedSlider.addEventListener("input",()=>{
 speed=Number(speedSlider.value);
-speedValue.textContent=speed;
 
 if(timer){
 
